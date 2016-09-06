@@ -4,9 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', [
+  'ionic',
+  'starter.controllers',
+  'starter.data'
+])
 
-.run(function($ionicPlatform) {
+.run(function($rootScope, $ionicPlatform, $getData) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +24,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    $getData.fetch().then(function(data){
+      $rootScope.menuItems = data.menuItems;
+      $rootScope.logo = data.logo;
+    });
   });
 })
 
@@ -31,7 +41,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-
+  .state('app.home', {
+    url: '/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/home.html'
+      }
+    }
+  })
   .state('app.search', {
     url: '/search',
     views: {
@@ -40,7 +57,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -69,5 +85,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/home');
 });

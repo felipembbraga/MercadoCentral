@@ -1,5 +1,19 @@
 angular.module('starter.controllers', [])
 
+.controller('MenuCtrl', function($scope, $getData) {
+  // $scope.menuItems = [];
+  // $scope.icon = "";
+  $getData.fetch().then(function(data){
+    console.log(data);
+    // $scope.menuItems = data.menuItems;
+    // $scope.logo = data.logo;
+  });
+
+  $scope.onClick = function(event, item) {
+    item.onClick && item.onClick(event);
+  }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called

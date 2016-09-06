@@ -1,0 +1,9 @@
+{
+  "appName": "Fit Fashion",
+  "logo": "img/ionic.png",
+  "menuItems": [
+    { "name": "Início", "route": "#/app/home", "icon": "ion-home" },
+    { "name": "Produtos", "route": "#/app/search", "icon": "ion-android-list" },
+    { "name": "Agende uma visita", "route": "#/app/search", "icon": "ion-calendar" }
+  ]
+}
