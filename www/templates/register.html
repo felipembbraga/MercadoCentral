@@ -1,0 +1,49 @@
+<ion-view>
+    <!-- <div
+      ng-style="{height: $window.innerHeight}"
+      class="flex flex-column justify-space-around align-center"
+    >
+
+    </div> -->
+  <ion-header-bar class="bar-dark">
+    <img ng-src="{{logo}}" class="navbar-icon" alt="">
+    <h1 class="title">{{appName}}</h1>
+  </ion-header-bar>
+  <ion-content ng-class="{'android-margin' : $state.includes('app') && platform === 'android'}">
+    <h2 class="title">Dados de acesso</h2>
+    <form name="registerForm" class="css-form">
+      <p>Salve suas informações para oferecermos as melhores propostas a você.</p>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.name.$touched && registerForm.name.$invalid}"
+          >Nome</span>
+          <input name="name" type="text" placeholder="Seu Nome" ng-model="obj.name" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.email.$touched && registerForm.email.$invalid}"
+          >Email</span>
+          <input name="email" type="email" placeholder="exemplo@email.com" required ng-model="obj.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.phone.$touched && registerForm.phone.$invalid}"
+          >Telefone</span>
+          <input
+            name="phone"
+            type="text"
+            placeholder="(99)99999-9999"
+            ui-br-phone-number
+            required
+            ng-model="obj.phone">
+        </label>
+      </div>
+    </form>
+    <div class="padding">
+      <button class="button button-positive button-block" ng-click="onClick()">
+        Salvar Dados
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view>
+  <ion-content>
+    <ion-slides class="product-slider" options="options" slider="data.slider">
+      <ion-slide-page ng-repeat="image in obj.product.images">
+        <div class="slider-body">
+          <img ng-src="{{image.url}}">
+        </div>
+      </ion-slide-page>
+    </ion-slides>
+    <h2>
+      {{obj.product.title}}
+    </h2>
+    <p>
+      {{obj.product.description}}
+    </p>
+  </ion-content>
+</ion-view>

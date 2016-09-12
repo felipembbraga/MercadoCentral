@@ -2,8 +2,102 @@
   "appName": "Fit Fashion",
   "logo": "img/ionic.png",
   "menuItems": [
-    { "name": "Início", "route": "#/app/home", "icon": "ion-home" },
-    { "name": "Produtos", "route": "#/app/search", "icon": "ion-android-list" },
-    { "name": "Agende uma visita", "route": "#/app/search", "icon": "ion-calendar" }
+    { "name": "Início", "route": "#/app/home", "icon": "ion-ios-home", "navName": "home" },
+    { "name": "Produtos", "ref":"produtos","route": "#/app/products/produtos", "icon": "ion-ios-list", "navName": "products"  },
+    { "name": "Promoções", "ref":"promo","route": "#/app/products/promo", "icon": "ion-ios-star", "navName": "promo"  }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Calça leg",
+      "description": "Calça para você usar no dia-a-dia em suas atividades físicas. Proporciona conforto e possui qualidade no material.",
+      "thumbnail": "http://mlb-s2-p.mlstatic.com/246611-MLB20601604741_022016-Y.jpg",
+      "refs": ["produtos", "promo"],
+      "images": [
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s2-p.mlstatic.com/246611-MLB20601604741_022016-Y.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s2-p.mlstatic.com/246611-MLB20601604741_022016-Y.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s2-p.mlstatic.com/246611-MLB20601604741_022016-Y.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Top Malhação",
+      "description": "Top para você usar no dia-a-dia em suas atividades físicas. Proporciona conforto e possui qualidade no material.",
+      "thumbnail": "https://www.kaisan.com.br/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/t/o/top-frente.jpg",
+      "refs": ["produtos", "promo"],
+      "images": [
+        {
+          "caption": "Calça de frente",
+          "url": "https://www.kaisan.com.br/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/t/o/top-frente.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "https://www.kaisan.com.br/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/t/o/top-frente.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "https://www.kaisan.com.br/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/t/o/top-frente.jpg"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Calça leg de mais uma marca",
+      "description": "Calça para você usar no dia-a-dia em suas atividades físicas. Proporciona conforto e possui qualidade no material.",
+      "thumbnail": "http://mlb-s1-p.mlstatic.com/356311-MLB20541428090_012016-Y.jpg",
+      "refs": ["produtos"],
+      "images": [
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s1-p.mlstatic.com/356311-MLB20541428090_012016-Y.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s1-p.mlstatic.com/356311-MLB20541428090_012016-Y.jpg"
+        },
+        {
+          "caption": "Calça de frente",
+          "url": "http://mlb-s1-p.mlstatic.com/356311-MLB20541428090_012016-Y.jpg"
+        }
+      ]
+    }
+  ],
+  "homeData": [
+    {
+      "title": "Promoção",
+      "description": "Tenha mais peças de academia em sua coleção!",
+      "link": "http://www.google.com",
+      "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
+      "extraData": {
+        "product": 1
+      }
+    },
+    {
+      "title": "Entre em nossa rede social!",
+      "description": "Tenha opções de pagamento diferenciados para nossos seguidores.",
+      "link": "http://www.google.com",
+      "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
+      "extraData": {
+        "product": 1
+      }
+    },
+    {
+      "title": "Promoção 3!",
+      "description": "Tenha mais peças de academia em sua coleção!",
+      "link": "http://www.google.com",
+      "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
+      "extraData": {
+        "product": 1
+      }
+    }
   ]
 }

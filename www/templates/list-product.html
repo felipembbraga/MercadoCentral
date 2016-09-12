@@ -1,0 +1,48 @@
+<ion-view view-title="{{obj.name}}" ng-class="{'android-margin': platform==='android'}">
+  <ion-content>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Visualizar
+      </div>
+      <select ng-model="obj.showType">
+        <option value="list">Lista</option>
+        <option value="grid" selected>Grade</option>
+      </select>
+    </label>
+
+    <div ng-if="obj.showType==='list'">
+      <div class="list">
+        <a
+          class="item item-thumbnail-left"
+          href="#/app/view-product/{{product.id}}"
+          ng-repeat="product in obj.products"
+          style="align-items: center">
+          <img ng-src="{{product.thumbnail}}">
+          <h2>{{product.title}}</h2>
+          <!-- <p>Nine Inch Nails</p> -->
+        </a>
+      </div>
+    </div>
+
+    <div ng-if="obj.showType==='grid'">
+      <div class="products-grid">
+        <div class="grid-item" ng-repeat="product in obj.products">
+          <div class="list card"> 
+            <div class="item item-image">
+              <a href="#/app/view-product/{{product.id}}">
+                <img ng-src="{{product.thumbnail}}">
+                <div class="description">
+                  <p>{{product.title}}</p>
+                </div>
+              </a>
+            </div>
+            <div class="item item-text-wrap">
+              This is a basic Card which contains an item that has wrapping text.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

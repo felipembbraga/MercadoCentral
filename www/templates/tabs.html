@@ -1,0 +1,27 @@
+<ion-tabs class="tabs-dark tabs-icon-top">
+  <!-- <ion-tab
+    ng-repeat="item in menuItems"
+    title="{{item.name}}"
+    href="{{item.route}}"
+    icon-on="{{item.icon}}" icon-off="{{item.icon}}-outline">
+    <ion-nav-view name="{{navName}}Content"></ion-nav-view>
+  </ion-tab> -->
+  <ion-tab
+    title="Início"
+    href="#/app/tabs/home"
+    icon-on="ion-ios-home" icon-off="ion-ios-home-outline">
+    <ion-nav-view name="homeContent"></ion-nav-view>
+  </ion-tab>
+  <ion-tab
+    title="Produtos"
+    href="#/app/tabs/products/produtos"
+    icon-on="ion-ios-list" icon-off="ion-ios-list-outline">
+    <ion-nav-view name="productsContent"></ion-nav-view>
+  </ion-tab>
+  <ion-tab
+    title="Início"
+    href="#/app/tabs/products/promo"
+    icon-on="ion-ios-star" icon-off="ion-ios-star-outline">
+    <ion-nav-view name="promoContent"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

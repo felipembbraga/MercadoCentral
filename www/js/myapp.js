@@ -12,6 +12,100 @@ angular.module('starter', [
   'starter.data'
 ])
 
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('splashscreen', {
+      url: '/splashscreen',
+      templateUrl: 'templates/splashscreen.html',
+      controller: 'SplashScreenCtrl'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'RegisterCtrl'
+    })
+
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl',
+    resolve: {
+      logged: function($localStorage, $q) {
+        if ($localStorage.user) {
+          return true;
+        }
+        return $q.reject('notLogged');
+      }
+    }
+  })
+
+  .state('app.home', {
+      url: '/home',
+      views: {
+        'home': {
+          templateUrl: 'templates/home.html',
+          controller: 'HomeCtrl'
+        }
+      }
+    })
+    .state('app.register', {
+      url: '/register',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/register.html',
+          controller: 'RegisterCtrl'
+        }
+      }
+    })
+    .state('app.products', {
+      url: '/products/:ref',
+      views: {
+        'products': {
+          templateUrl: 'templates/list-product.html',
+          controller: 'ListProductCtrl'
+        }
+      }
+    })
+    .state('app.productView', {
+      url: '/view-product/:productId',
+      views: {
+        'promo': {
+          templateUrl: 'templates/view-product.html',
+          controller: 'ViewProductCtrl'
+        }
+      }
+    })
+    .state('app.browse', {
+      url: '/browse',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/browse.html'
+        }
+      }
+    })
+    .state('app.playlists', {
+      url: '/playlists',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/playlists.html',
+          controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+  .state('app.single', {
+    url: '/playlists/:playlistId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlist.html',
+        controller: 'PlaylistCtrl'
+      }
+    }
+  });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/splashscreen');
+})
 .run(function($rootScope, $ionicPlatform, $getData, $window, $state) {
 
   $ionicPlatform.ready(function() {
@@ -47,85 +141,4 @@ angular.module('starter', [
       $rootScope.logo = data.logo;
     });
   });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-    .state('splashscreen', {
-      url: '/splashscreen',
-      templateUrl: 'templates/splashscreen.html',
-      controller: 'SplashScreenCtrl'
-    })
-    .state('register', {
-      url: '/register',
-      templateUrl: 'templates/register.html',
-      controller: 'RegisterCtrl'
-    })
-
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl',
-    resolve: {
-      logged: function($localStorage, $q) {
-        if ($localStorage.user) {
-          return true;
-        }
-        return $q.reject('notLogged');
-      }
-    }
-  })
-  // .state('app.tabs', {
-  //   url: '/tabs',
-  //   abstract: true,
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/tabs.html'
-  //     }
-  //   }
-  // })
-  .state('app.home', {
-      url: '/home',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
-        }
-      }
-    })
-    .state('app.register', {
-      url: '/register',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/register.html',
-          controller: 'RegisterCtrl'
-        }
-      }
-    })
-    .state('app.products', {
-      url: '/products/:ref',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/list-product.html',
-          controller: 'ListProductCtrl'
-        },
-        'menuContent': {
-          templateUrl: 'templates/list-product.html',
-          controller: 'ListProductCtrl'
-        }
-      }
-    })
-    .state('app.productView', {
-      url: '/view-product/:productId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/view-product.html',
-          controller: 'ViewProductCtrl'
-        }
-      }
-
-    });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/splashscreen');
 });

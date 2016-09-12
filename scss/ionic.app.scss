@@ -21,3 +21,185 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "sidemenu";
+
+@mixin flexDirection($direction) {
+    flex-direction: $direction;
+}
+
+$justify-content-options: flex-start, flex-end, center, space-between, space-around;
+$align-items-options: center, stretch, flex-start, flex-end, baseline;
+
+a {
+  text-decoration: none;
+  color: $dark;
+}
+
+.spinner svg {
+  width: 80px;
+  height: 80px;
+  stroke: $positive;
+  fill: $positive;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  @include flexDirection(row);
+  &.flex-row {
+    @include flexDirection(row);
+  }
+  &.flex-column {
+    @include flexDirection(column);
+  }
+
+  @each $option in $align-items-options {
+    &.align-#{$option} {
+      align-items: $option;
+    }
+  }
+
+  @each $option in $justify-content-options {
+    &.justify-#{$option} {
+      justify-content: $option;
+    }
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+
+}
+
+.css-form span.invalid {
+  color: rgb(254, 36, 36);
+}
+
+// .css-form input.ng-valid.ng-touched {
+//   background-color: #78FA89;
+// }
+
+.swiper-pagination-bullet {
+    background: $positive;
+}
+
+.navbar-icon {
+  height: 24px;
+  width: 24px;
+  align-self: center;
+  margin-left: 2px;
+}
+
+.menu-popover {
+  height: 70px;
+}
+
+.android-margin {
+  margin-top: 48px;
+}
+
+.home-slider {
+  // width: 100%;
+   height: 500px;
+  .slider-body {
+    .slider-image {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      > img {
+        width: 100%;
+      }
+    }
+    > h3 {
+      color: $positive;
+      font-weight: bolder;
+    }
+
+    a {
+      text-decoration: none;
+      color: $dark;
+    }
+  }
+}
+
+.product-slider {
+  height: 200px;
+  background-color: rgb(196, 196, 196);
+}
+.slider-body {
+  justify-content: center;
+  position: relative;
+  .slider-image {
+    flex: 1;
+    background-color: rgb(162, 162, 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+  }
+  .slider-text {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 20px;
+    h2, p {
+      color: white;
+    }
+    h2 {
+      font-weight: bolder;
+    }
+  }
+}
+.home-menu {
+  .card {
+
+    .item {
+      background-color: rgb(180, 180, 180);
+    }
+    i {
+      font-size: 36px;
+    }
+    i, span {
+      color: $positive;
+    }
+  }
+}
+.products-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  .grid-item {
+    margin: 0 1%;
+    width: 47%;
+    .card {
+      align-self: center;
+      width: 160px;
+      height: 160px;
+      margin: 5px 5px;
+      .item-image {
+        position: relative;
+        overflow: hidden;
+        img {
+          height: 160px;
+        }
+        .description {
+          position: absolute;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          bottom: 0;
+          padding: 3px 2px;
+          background-color: rgba(80, 80, 80, 0.71);
+          p {
+            text-align: center;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
