@@ -21,6 +21,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "sidemenu";
+@import "ribbon";
 
 @mixin flexDirection($direction) {
     flex-direction: $direction;
@@ -126,13 +127,23 @@ a {
 .product-slider {
   height: 200px;
   background-color: rgb(196, 196, 196);
+  .slider-image {
+    flex: 1;
+    // background-color: rgb(162, 162, 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 100%;
+    }
+  }
 }
 .slider-body {
   justify-content: center;
   position: relative;
   .slider-image {
     flex: 1;
-    background-color: rgb(162, 162, 162);
+    // background-color: rgb(162, 162, 162);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,7 +185,7 @@ a {
   align-items: center;
   .grid-item {
     margin: 0 1%;
-    width: 47%;
+    width: 160px;
     .card {
       align-self: center;
       width: 160px;

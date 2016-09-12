@@ -12,6 +12,12 @@
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
         <button
+          view-button
+          ng-click="changeView()"
+          ng-if="$state.includes('app.products')"
+        >
+        </button>
+        <button
           class="button button-icon button-clear ion-android-more-vertical"
           style="margin-right: 10px"
           ng-click="openPopover($event)">
@@ -19,6 +25,7 @@
       </ion-nav-buttons>
 
     </ion-nav-bar>
+
     <!--  -->
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>

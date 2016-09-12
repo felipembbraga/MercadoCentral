@@ -1,5 +1,5 @@
 {
-  "appName": "Fit Fashion",
+  "appName": "Santa Helena Veículos",
   "logo": "img/ionic.png",
   "menuItems": [
     { "name": "Início", "route": "#/app/home", "icon": "ion-ios-home", "navName": "home" },

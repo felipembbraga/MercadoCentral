@@ -1,16 +1,6 @@
-<ion-view view-title="{{obj.name}}" ng-class="{'android-margin': platform==='android'}">
+<ion-view view-title="{{obj.name}}">
   <ion-content>
-    <label class="item item-input item-select">
-      <div class="input-label">
-        Visualizar
-      </div>
-      <select ng-model="obj.showType">
-        <option value="list">Lista</option>
-        <option value="grid" selected>Grade</option>
-      </select>
-    </label>
-
-    <div ng-if="obj.showType==='list'">
+    <div ng-if="obj.list">
       <div class="list">
         <a
           class="item item-thumbnail-left"
@@ -24,11 +14,12 @@
       </div>
     </div>
 
-    <div ng-if="obj.showType==='grid'">
+    <div ng-if="!obj.list">
       <div class="products-grid">
         <div class="grid-item" ng-repeat="product in obj.products">
-          <div class="list card"> 
+          <div class="list card">
             <div class="item item-image">
+              <ribbon-corner ng-if="isPromo(product)">Promoção!</ribbon-corner>
               <a href="#/app/view-product/{{product.id}}">
                 <img ng-src="{{product.thumbnail}}">
                 <div class="description">

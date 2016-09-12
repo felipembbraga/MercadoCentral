@@ -9,7 +9,9 @@ angular.module('starter', [
   'ngStorage',
   'ui.utils.masks',
   'starter.controllers',
-  'starter.data'
+  'starter.data',
+  'starter.directives.ribbon',
+  'starter.directives.viewButton'
 ])
 
 .run(function($rootScope, $ionicPlatform, $getData, $window, $state) {

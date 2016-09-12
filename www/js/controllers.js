@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
     'align-items': 'center'
   };
 
-  $timeout(5000).then(function() {
+  $timeout(1000).then(function() {
     $state.go('app.home');
   });
 })
@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopover, $state) {
+.controller('AppCtrl', function($scope, $ionicPopover, $state, viewButtonService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -101,44 +101,21 @@ angular.module('starter.controllers', [])
     $scope.popover.remove();
   });
 
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  $scope.changeView = function() {
+    viewButtonService.changeType();
   };
 })
 
-.controller('ListProductCtrl', function($scope, $rootScope, $stateParams, $getData) {
+.controller('ListProductCtrl', function($scope, $rootScope, $stateParams, $getData, viewButtonService) {
   $scope.obj = {
-    showType: 'grid',
+    list: viewButtonService.list,
     name: '',
     products: []
-  }
+  };
+
+  $scope.$watch(function() {return viewButtonService.list; }, function(value) {
+    $scope.obj.list = value;
+  });
   var menuItem = _.find($rootScope.menuItems, function(val) {
     return val.ref === $stateParams.ref;
   });
@@ -146,13 +123,18 @@ angular.module('starter.controllers', [])
     $scope.obj.name = menuItem.name;
   }
 
+  function isSelected(lista, filter) {
+    return _.findIndex(lista, function(value) {
+      return value === filter;
+    }) > -1;
+  };
+  $scope.isPromo = function(product) {
+    return isSelected(product.refs, 'promo');
+  };
+
   $getData.fetch().then(function(data) {
     $scope.obj.products = _.filter(data.products, function(product) {
-      console.log(product.refs);
-
-      return _.findIndex(product.refs, function(ref) {
-        return ref === $stateParams.ref;
-      }) > -1
+      return isSelected(product.refs, $stateParams.ref);
     });
   });
 })
