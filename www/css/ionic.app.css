@@ -9965,7 +9965,7 @@ a {
     justify-content: center;
     align-items: center; }
     .product-slider .slider-image img {
-      height: 100%; }
+      width: auto; }
 
 .slider-body {
   justify-content: center;

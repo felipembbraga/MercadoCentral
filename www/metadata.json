@@ -3,7 +3,7 @@
   "logo": "img/ionic.png",
   "menuItems": [
     { "name": "Início", "route": "#/app/home", "icon": "ion-ios-home", "navName": "home" },
-    { "name": "Produtos", "ref":"produtos","route": "#/app/products/produtos", "icon": "ion-ios-list", "navName": "products"  },
+    { "id": 1, "name": "Produtos", "ref":"product","route": "#/app/products/product", "icon": "ion-ios-list", "navName": "products"  },
     { "name": "Promoções", "ref":"promo","route": "#/app/products/promo", "icon": "ion-ios-star", "navName": "promo"  }
   ],
   "products": [

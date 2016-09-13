@@ -106,14 +106,25 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListProductCtrl', function($scope, $rootScope, $stateParams, $getData, viewButtonService) {
+.controller('ListProductCtrl', function(
+  $scope,
+  $rootScope,
+  $stateParams,
+  $getData,
+  $getProducts,
+  $serverUrl,
+  viewButtonService,
+  $ionicLoading
+) {
   $scope.obj = {
     list: viewButtonService.list,
     name: '',
     products: []
   };
 
-  $scope.$watch(function() {return viewButtonService.list; }, function(value) {
+  $scope.$watch(function() {
+    return viewButtonService.list;
+  }, function(value) {
     $scope.obj.list = value;
   });
   var menuItem = _.find($rootScope.menuItems, function(val) {
@@ -132,24 +143,134 @@ angular.module('starter.controllers', [])
     return isSelected(product.refs, 'promo');
   };
 
-  $getData.fetch().then(function(data) {
-    $scope.obj.products = _.filter(data.products, function(product) {
-      return isSelected(product.refs, $stateParams.ref);
+  $scope.loadData = function() {
+    $ionicLoading.show({
+      template: 'Carregando...'
+    }).then(function() {
+      $getProducts.fetch($stateParams.ref).then(function(data) {
+        $scope.obj.products = _.map(data, function(product) {
+          var thumbnailImage = angular.fromJson(product.get_thumbnail);
+
+          if (thumbnailImage) {
+            var thumbnail = $serverUrl + '/media/' + thumbnailImage[0].fields.image
+          }
+
+          var imageArray = angular.fromJson(product.get_images);
+          console.log(imageArray);
+          var images = _.map(imageArray, function(image) {
+            return {
+              url: $serverUrl + '/media/' + image.fields.image,
+              caption: image.fields.caption
+            }
+          });
+
+          return {
+            id: product.id,
+            title: product.title,
+            short_description: product.short_description,
+            description: product.description,
+            thumbnail: thumbnail,
+            images: images
+          }
+        });
+        $ionicLoading.hide();
+        $scope.$broadcast('scroll.refreshComplete');
+      });
     });
+  };
+
+  // $getData.fetch().then(function(data) {
+  //   $scope.obj.products = _.filter(data.products, function(product) {
+  //     return isSelected(product.refs, $stateParams.ref);
+  //   });
+  // });
+  //
+  $scope.$on('$stateChangeSuccess', function(event, toState) {
+    if (toState.name === 'app.products') {
+      $scope.loadData();
+    }
   });
+
 })
 
-.controller('ViewProductCtrl', function($scope, $stateParams, $getData) {
+.controller('ViewProductCtrl', function($scope, $stateParams, $getData,
+  $getProducts,
+  $serverUrl,
+  viewButtonService,
+  $ionicLoading
+) {
   $scope.obj = {
     product: {}
   };
 
-  $getData.fetch().then(function(data) {
-    console.log($stateParams);
-    $scope.obj.product = _.find(data.products, function(product) {
-      return product.id === parseInt($stateParams.productId);
+  $scope.loadData = function() {
+    console.log('aberto');
+    $ionicLoading.show({
+      template: 'Carregando...'
+    }).then(function() {
+      $getProducts.fetchOne($stateParams.productId).then(function(product) {
+        console.log(product);
+        var imageArray = angular.fromJson(product.get_images);
+        var images = _.map(imageArray, function(image) {
+          return {
+            url: $serverUrl + '/media/' + image.fields.image,
+            caption: image.fields.caption
+          }
+        });
+        $scope.obj.product = {
+          id: product.id,
+          title: product.title,
+          short_description: product.short_description,
+          description: product.description,
+          images: images
+        };
+        // $scope.obj.products = _.map(product, function(product) {
+        //   var thumbnailImage = angular.fromJson(product.get_thumbnail);
+        //
+        //   if(thumbnailImage){
+        //     var thumbnail = $serverUrl + '/media/' + thumbnailImage[0].fields.image
+        //   }
+        //
+        //   var imageArray = angular.fromJson(product.get_images);
+        //   console.log(imageArray);
+        //   var images = _.map(imageArray, function(image) {
+        //     return {
+        //       url: $serverUrl + '/media/' + image.fields.image,
+        //       caption: image.fields.caption
+        //     }
+        //   });
+        //
+        //   return {
+        //     id: product.id,
+        //     title: product.title,
+        //     short_description: product.short_description,
+        //     description: product.description,
+        //     thumbnail: thumbnail,
+        //     images: images
+        //   }
+        // });
+        $ionicLoading.hide();
+        $scope.$broadcast('scroll.refreshComplete');
+      });
     });
+
+
+
+
+  };
+
+  $scope.$on('$stateChangeSuccess', function(event, toState) {
+    if (toState.name === 'app.productView') {
+      $scope.loadData();
+    }
   });
+
+  // $getData.fetch().then(function(data) {
+  //   console.log($stateParams);
+  //   $scope.obj.product = _.find(data.products, function(product) {
+  //     return product.id === parseInt($stateParams.productId);
+  //   });
+  // });
 
 })
 

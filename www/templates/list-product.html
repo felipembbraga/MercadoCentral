@@ -1,5 +1,10 @@
 <ion-view view-title="{{obj.name}}">
   <ion-content>
+    <ion-refresher
+      pulling-text="Arraste para atualizar..."
+      on-refresh="loadData()"
+      spinner="none">
+    </ion-refresher>
     <div ng-if="obj.list">
       <div class="list">
         <a
@@ -9,7 +14,7 @@
           style="align-items: center">
           <img ng-src="{{product.thumbnail}}">
           <h2>{{product.title}}</h2>
-          <!-- <p>Nine Inch Nails</p> -->
+          <p>{{product.short_description}}</p>
         </a>
       </div>
     </div>
@@ -26,9 +31,6 @@
                   <p>{{product.title}}</p>
                 </div>
               </a>
-            </div>
-            <div class="item item-text-wrap">
-              This is a basic Card which contains an item that has wrapping text.
             </div>
           </div>
         </div>

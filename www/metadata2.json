@@ -1,5 +1,5 @@
 {
-  "appName": "Fit Fashion",
+  "appName": "Santa Helena Veículos",
   "logo": "img/ionic.png",
   "menuItems": [{
     "name": "Início",
@@ -7,31 +7,10 @@
     "icon": "ion-ios-home",
     "navName": "home"
   }, {
+    "id": 1,
     "name": "Produtos",
-    "ref": "produtos",
-    "route": "#/app/products/produtos",
-    "icon": "ion-ios-list",
-    "navName": "products"
-  }, {
-    "name": "Promoções",
-    "ref": "promo",
-    "route": "#/app/products/promo",
-    "icon": "ion-ios-star",
-    "navName": "promo"
-  }],
-  "routes": [{
-    "name": "home",
-    "url": "/home",
-    "parent": "app",
-    "abstract": "false",
-    "title": "Início",
-    "route": "/app/home",
-    "icon": "ion-ios-home",
-    "navName": "home"
-  }, {
-    "name": "Produtos",
-    "ref": "produtos",
-    "route": "#/app/products/produtos",
+    "ref": "product",
+    "route": "#/app/products/product",
     "icon": "ion-ios-list",
     "navName": "products"
   }, {
@@ -74,7 +53,7 @@
       "url": "https://www.kaisan.com.br/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/t/o/top-frente.jpg"
     }]
   }, {
-    "id": 1,
+    "id": 3,
     "title": "Calça leg de mais uma marca",
     "description": "Calça para você usar no dia-a-dia em suas atividades físicas. Proporciona conforto e possui qualidade no material.",
     "thumbnail": "http://mlb-s1-p.mlstatic.com/356311-MLB20541428090_012016-Y.jpg",
