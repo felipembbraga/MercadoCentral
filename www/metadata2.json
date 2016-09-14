@@ -71,28 +71,20 @@
     }]
   }],
   "homeData": [{
-    "title": "Promoção",
-    "description": "Tenha mais peças de academia em sua coleção!",
+    "title": "Venha conhecer",
+    "description": "Novo Peugeot 208 GTi",
     "link": "http://www.google.com",
-    "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
+    "image": "http://www.peugeot.pt/media/showrooms/showroom-peugeot-novo208-gti-peugeotsport-kppv3/medias/Heading/PEUGEOT_208_GTi_Design_exterieur_radical_633x400_1.jpg",
     "extraData": {
       "product": 1
     }
   }, {
     "title": "Entre em nossa rede social!",
-    "description": "Tenha opções de pagamento diferenciados para nossos seguidores.",
+    "description": "Fique informado sobre os carros mais sensacionais do mercado.",
     "link": "http://www.google.com",
-    "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
+    "image": "http://sharpfutures.org.uk/wp-content/uploads/2015/09/Peugeot_gallery.jpg",
     "extraData": {
-      "product": 1
-    }
-  }, {
-    "title": "Promoção 3!",
-    "description": "Tenha mais peças de academia em sua coleção!",
-    "link": "http://www.google.com",
-    "image": "http://4move.com.br/wp-content/uploads/2016/07/correr.jpg",
-    "extraData": {
-      "product": 1
+      "product": 2
     }
   }]
 }

@@ -1,7 +1,8 @@
 angular.module('starter.data', [])
 .constant('$serverUrl', 'http://ubuntuserver1385.cloudapp.net')
+.constant('$appId', 1)
 
-.factory('$getData', function($http, $q, $rootScope, $localStorage, $serverUrl) {
+.factory('$getData', function($http, $q, $rootScope, $localStorage, $serverUrl, $appId) {
   var self = this;
   this.loaded = false;
   this.instanceData = function(data) {
@@ -27,19 +28,19 @@ angular.module('starter.data', [])
   this.load = function() {
     var self = this;
     var deferred = $q.defer();
-    var url = $serverUrl + '/api/apps/1.json';
+    var url = $serverUrl + '/api/apps/'+ $appId + '.json';
 
-    if($localStorage.appData) {
-      deferred.resolve($localStorage.appData);
-      this.loaded = true;
-    } else {
+    // if($localStorage.appData) {
+      // deferred.resolve($localStorage.appData);
+      // this.loaded = true;
+    // } else {
       $http.get(url).then(function(response) {
         $localStorage.appData = response.data;
         deferred.resolve($localStorage.appData);
       }, function() {
         deferred.reject('dados não encontrados');
       });
-    }
+    // }
     return deferred.promise;
   }
 
@@ -62,7 +63,7 @@ angular.module('starter.data', [])
   }
 })
 
-.factory('$getProducts', function($http, $q, $serverUrl) {
+.factory('$getProducts', function($http, $q, $serverUrl, $appId) {
   var url = $serverUrl + '/api/products/';
   var productsUrl = url;
   return {
@@ -70,7 +71,8 @@ angular.module('starter.data', [])
       var deferred = $q.defer();
 
       $http.get(productsUrl, {params: {
-        sections__reference: reference
+        sections__reference: reference,
+        enterprise__pk: $appId
       }})
         .then(function(response) {
           deferred.resolve(response.data);

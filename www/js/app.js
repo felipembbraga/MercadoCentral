@@ -80,11 +80,13 @@ angular.module('starter', [
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('splashscreen', {
+      cache: false,
       url: '/splashscreen',
       templateUrl: 'templates/splashscreen.html',
       controller: 'SplashScreenCtrl'
     })
     .state('register', {
+      cache: false,
       url: '/register',
       templateUrl: 'templates/register.html',
       controller: 'RegisterCtrl'
@@ -155,6 +157,7 @@ angular.module('starter', [
 
     })
     .state('app.contact', {
+      cache: false,
       url: '/contact',
       params: {
         product: null

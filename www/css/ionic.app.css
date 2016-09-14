@@ -9821,6 +9821,8 @@ a.button {
   display: flex;
   justify-content: center;
   align-items: center; }
+  .logo-menu img {
+    width: 100%; }
 
 .wrapper {
   margin: 50px auto;

@@ -107,7 +107,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ContactCtrl', function($scope, $localStorage, $state, $ionicPopup) {
+.controller('ContactCtrl', function($scope, $localStorage, $state, $ionicPopup, $ionicHistory) {
 
   $scope.$on('$stateChangeSuccess', function(event, toState) {
     if(toState.name === 'app.contact') {
@@ -164,6 +164,8 @@ angular.module('starter.controllers', [])
     confirmPopup.then(function() {
       console.log(this.registerForm);
       $scope.obj.message = '';
+      $ionicHistory.goBack();
+      // $state.go('app.home');
     });
     // $localStorage.user = $scope.obj;
     // $state.go('app.home');
