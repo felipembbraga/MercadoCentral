@@ -5,6 +5,15 @@ angular.module('starter.controllers')
     $scope.homeData = data.homeData;
     console.log($scope.homeData);
   });
+
+  $scope.ngStyle = {
+    h2: {
+      color: 'rgb(35, 136, 200)'
+    },
+    p: {
+      color: 'rgb(35, 136, 200)'
+    }
+  }
   $scope.options = {
     effect: 'slide',
     loop: false,

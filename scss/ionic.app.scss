@@ -164,20 +164,39 @@ a {
     }
   }
 }
-.home-menu {
-  .card {
 
-    .item {
-      background-color: rgb(180, 180, 180);
-    }
-    i {
-      font-size: 36px;
-    }
-    i, span {
-      color: $positive;
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.home-menu {
+  .cards{
+    display: flex;
+    flex-direction: row;
+    .card-wrapper {
+      width: 150px;
+      .card {
+
+        .item {
+          background-color: rgb(180, 180, 180);
+        }
+        i {
+          font-size: 36px;
+        }
+        i, span {
+          color: $positive;
+        }
+      }
     }
   }
 }
+
+.item-thumbnail-left > img:first-child {
+  width: auto;
+  height: auto;
+}
+
 .products-grid {
   display: flex;
   flex-direction: row;
@@ -193,10 +212,13 @@ a {
       height: 160px;
       margin: 5px 5px;
       .item-image {
+        height: 160px;
         position: relative;
         overflow: hidden;
+        display: flex;
+        align-items: center;
         img {
-          height: 160px;
+          // height: 160px;
         }
         .description {
           position: absolute;

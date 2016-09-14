@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SplashScreenCtrl', function($scope, $state, $timeout) {
+.controller('SplashScreenCtrl', function($rootScope, $scope, $getData, $state, $timeout) {
   $scope.ngStyle = {
     'background-color': '#444',
     'display': 'flex',
@@ -9,9 +9,43 @@ angular.module('starter.controllers', [])
     'align-items': 'center'
   };
 
-  $timeout(1000).then(function() {
-    $state.go('app.home');
-  });
+  $scope.$on('$stateChangeSuccess', function(event, toState) {
+    if(toState.name === 'splashscreen') {
+      $getData.load().then(function(data) {
+          $rootScope.appName = data.name;
+          $rootScope.logo = data.logo;
+          var sections = _.map(data.sections, function(value) {
+            var route = '#/app';
+            console.log(value.fields.type)
+            switch (value.fields.type) {
+              case 0:
+                route = route + '/products/' + value.fields.reference
+                break;
+              case 2:
+                route = route + '/contact';
+                break;
+              default:
+                route = route;
+            }
+            return {
+              name: value.fields.title,
+              icon: value.fields.icon,
+              ref: value.fields.reference,
+              route: route
+            };
+          });
+          $rootScope.menuItems = _.concat([{
+            name: 'Início',
+            icon: 'ion-ios-home',
+            ref: '',
+            route: '#/app/home'
+          }], sections);
+          console.log(data);
+          $timeout(function() {$state.transitionTo('app.home');}, 1000);
+
+      });
+    }
+  })
 })
 
 .controller('MenuCtrl', function($scope, $rootScope, $getData) {
@@ -69,6 +103,70 @@ angular.module('starter.controllers', [])
     }
     $localStorage.user = $scope.obj;
     $state.go('app.home');
+
+  }
+})
+
+.controller('ContactCtrl', function($scope, $localStorage, $state, $ionicPopup) {
+
+  $scope.$on('$stateChangeSuccess', function(event, toState) {
+    if(toState.name === 'app.contact') {
+      $scope.obj = {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      };
+
+      if ($localStorage.user) {
+        $scope.obj = angular.extend({}, $scope.obj, $localStorage.user);
+      }
+    }
+  });
+
+  $scope.onClick = function() {
+    if (this.registerForm.$invalid) {
+      $scope.errors = [];
+      if (this.registerForm.$error.required) {
+        $scope.errors.push('Preencha todos os campos!');
+      }
+      if (this.registerForm.$error.email) {
+        $scope.errors.push('Insira um email válido');
+      }
+      if (this.registerForm.$error.brPhoneNumber) {
+        $scope.errors.push('Insira um número válido.');
+      }
+      var myPopup = $ionicPopup.show({
+        title: 'Alerta',
+        template: '<ul>' +
+          '<li ng-repeat="error in errors">{{error}}</li>' +
+          '</ul>',
+        scope: $scope,
+        buttons: [{
+          text: 'Ok'
+        }]
+      });
+
+      myPopup.then(function(res) {
+
+      });
+      return;
+    }
+    var confirmPopup = $ionicPopup.show({
+      title: 'Enviado com sucesso!',
+      template: 'Entraremos em contato em breve.',
+      scope: $scope,
+      buttons: [{
+        text: 'Ok'
+      }]
+    });
+    var self
+    confirmPopup.then(function() {
+      console.log(this.registerForm);
+      $scope.obj.message = '';
+    });
+    // $localStorage.user = $scope.obj;
+    // $state.go('app.home');
 
   }
 })
@@ -149,13 +247,13 @@ angular.module('starter.controllers', [])
     }).then(function() {
       $getProducts.fetch($stateParams.ref).then(function(data) {
         $scope.obj.products = _.map(data, function(product) {
-          var thumbnailImage = angular.fromJson(product.get_thumbnail);
+          var thumbnailImage = angular.fromJson(product.thumbnail);
 
           if (thumbnailImage) {
             var thumbnail = $serverUrl + '/media/' + thumbnailImage[0].fields.image
           }
 
-          var imageArray = angular.fromJson(product.get_images);
+          var imageArray = angular.fromJson(product.images);
           console.log(imageArray);
           var images = _.map(imageArray, function(image) {
             return {
@@ -210,7 +308,7 @@ angular.module('starter.controllers', [])
     }).then(function() {
       $getProducts.fetchOne($stateParams.productId).then(function(product) {
         console.log(product);
-        var imageArray = angular.fromJson(product.get_images);
+        var imageArray = angular.fromJson(product.images);
         var images = _.map(imageArray, function(image) {
           return {
             url: $serverUrl + '/media/' + image.fields.image,

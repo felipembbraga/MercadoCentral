@@ -9986,14 +9986,25 @@ a {
     .slider-body .slider-text h2 {
       font-weight: bolder; }
 
-.home-menu .card .item {
-  background-color: #b4b4b4; }
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap; }
 
-.home-menu .card i {
-  font-size: 36px; }
+.home-menu .cards {
+  display: flex;
+  flex-direction: row; }
+  .home-menu .cards .card-wrapper {
+    width: 150px; }
+    .home-menu .cards .card-wrapper .card .item {
+      background-color: #b4b4b4; }
+    .home-menu .cards .card-wrapper .card i {
+      font-size: 36px; }
+    .home-menu .cards .card-wrapper .card i, .home-menu .cards .card-wrapper .card span {
+      color: #387ef5; }
 
-.home-menu .card i, .home-menu .card span {
-  color: #387ef5; }
+.item-thumbnail-left > img:first-child {
+  width: auto;
+  height: auto; }
 
 .products-grid {
   display: flex;
@@ -10010,10 +10021,11 @@ a {
       height: 160px;
       margin: 5px 5px; }
       .products-grid .grid-item .card .item-image {
+        height: 160px;
         position: relative;
-        overflow: hidden; }
-        .products-grid .grid-item .card .item-image img {
-          height: 160px; }
+        overflow: hidden;
+        display: flex;
+        align-items: center; }
         .products-grid .grid-item .card .item-image .description {
           position: absolute;
           width: 100%;

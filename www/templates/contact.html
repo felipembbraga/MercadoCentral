@@ -1,0 +1,50 @@
+<ion-view>
+  <ion-content>
+    <div class="padding">
+      <h2 class="title">Entre em contato conosco</h2>
+    </div>
+    <form name="registerForm" class="css-form">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.name.$touched && registerForm.name.$invalid}"
+          >Nome</span>
+          <input name="name" type="text" placeholder="Seu Nome" ng-model="obj.name" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.email.$touched && registerForm.email.$invalid}"
+          >Email</span>
+          <input name="email" type="email" placeholder="exemplo@email.com" required ng-model="obj.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.phone.$touched && registerForm.phone.$invalid}"
+          >Telefone</span>
+          <input
+            name="phone"
+            type="text"
+            placeholder="(99)99999-9999"
+            ui-br-phone-number
+            required
+            ng-model="obj.phone">
+        </label>
+        <label class="item item-input">
+          <span class="input-label"
+            ng-class="{invalid: registerForm.message.$touched && registerForm.message.$invalid}"
+          >Mensagem</span>
+          <input
+            type="text"
+            name="message"
+            required
+            ng-model="obj.message" />
+        </label>
+      </div>
+    </form>
+    <div class="padding">
+      <button class="button button-positive button-block" ng-click="onClick()">
+        Salvar Dados
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

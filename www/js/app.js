@@ -14,7 +14,7 @@ angular.module('starter', [
   'starter.directives.viewButton'
 ])
 
-.run(function($rootScope, $ionicPlatform, $getData, $window, $state) {
+.run(function($rootScope, $ionicPlatform, $getData, $http, $window, $state, $localStorage, $serverUrl) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -38,16 +38,42 @@ angular.module('starter', [
       }
     );
 
+    function instanceData() {
+      var logo = $localStorage.appData.logo;
+      $rootScope.appName = $localStorage.appData.name;
+      $rootScope.logo = logo;
+      $rootScope.$broadcast('$carregado');
+      $rootScope.$emit('$carregado');
+    }
+
 
     $rootScope.platform = ionic.Platform.platform();
     $rootScope.$state = $state;
 
     $rootScope.$window = $window;
     $getData.fetch().then(function(data) {
-      $rootScope.appName = data.appName;
-      $rootScope.menuItems = data.menuItems;
-      $rootScope.logo = data.logo;
+      // $rootScope.appName = data.appName;
+      // $rootScope.menuItems = data.menuItems;
+      // $rootScope.logo = data.logo;
     });
+
+    // if (!$localStorage.appData) {
+    //   $getData.fetch().then(function(data) {
+    //     var url = $serverUrl + '/api/apps/1.json';
+    //     $http.get(url).then(function(data) {
+    //       $localStorage.appData = data.data;
+    //       instanceData();
+    //       $rootScope.$broadcast('$carregado');
+    //       $rootScope.$emit('$carregado');
+    //     });
+    //   });
+    // } else {
+    //   // delete $localStorage.appData;
+    //   instanceData();
+    //   console.log($localStorage.appData)
+    //   $rootScope.$broadcast('$carregado');
+    //   $rootScope.$emit('$carregado');
+    // }
   });
 })
 
@@ -64,30 +90,30 @@ angular.module('starter', [
       controller: 'RegisterCtrl'
     })
 
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl',
-    resolve: {
-      logged: function($localStorage, $q) {
-        if ($localStorage.user) {
-          return true;
+  .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl',
+      resolve: {
+        logged: function($localStorage, $q) {
+          if ($localStorage.user) {
+            return true;
+          }
+          return $q.reject('notLogged');
         }
-        return $q.reject('notLogged');
       }
-    }
-  })
-  // .state('app.tabs', {
-  //   url: '/tabs',
-  //   abstract: true,
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/tabs.html'
-  //     }
-  //   }
-  // })
-  .state('app.home', {
+    })
+    // .state('app.tabs', {
+    //   url: '/tabs',
+    //   abstract: true,
+    //   views: {
+    //     'menuContent': {
+    //       templateUrl: 'templates/tabs.html'
+    //     }
+    //   }
+    // })
+    .state('app.home', {
       url: '/home',
       views: {
         'menuContent': {
@@ -124,6 +150,19 @@ angular.module('starter', [
         'menuContent': {
           templateUrl: 'templates/view-product.html',
           controller: 'ViewProductCtrl'
+        }
+      }
+
+    })
+    .state('app.contact', {
+      url: '/contact',
+      params: {
+        product: null
+      },
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/contact.html',
+          controller: 'ContactCtrl'
         }
       }
 

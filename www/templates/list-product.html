@@ -8,10 +8,10 @@
     <div ng-if="obj.list">
       <div class="list">
         <a
-          class="item item-thumbnail-left"
+          class="item item-thumbnail-left flex flex-column"
           href="#/app/view-product/{{product.id}}"
           ng-repeat="product in obj.products"
-          style="align-items: center">
+          style="justify-content: center">
           <img ng-src="{{product.thumbnail}}">
           <h2>{{product.title}}</h2>
           <p>{{product.short_description}}</p>
