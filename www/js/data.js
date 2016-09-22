@@ -1,5 +1,5 @@
 angular.module('starter.data', [])
-.constant('$serverUrl', 'http://ubuntuserver1385.cloudapp.net')
+.constant('$serverUrl', 'http://192.168.0.104:8001')
 .constant('$appId', 1)
 
 .factory('$getData', function($http, $q, $rootScope, $localStorage, $serverUrl, $appId) {
@@ -73,6 +73,39 @@ angular.module('starter.data', [])
       $http.get(productsUrl, {params: {
         sections__reference: reference,
         enterprise__pk: $appId
+      }})
+        .then(function(response) {
+          deferred.resolve(response.data);
+        }, function() {
+          deferred.reject('dados não encontrados');
+        });
+
+      return deferred.promise;
+    },
+    fetchOne: function(id) {
+      var deferred = $q.defer();
+
+      $http.get(url + id + '.json')
+        .then(function(response) {
+          deferred.resolve(response.data);
+        }, function() {
+          deferred.reject('dados não encontrados');
+        });
+
+      return deferred.promise;
+    }
+  };
+})
+
+.factory('$getHighlights', function($http, $q, $serverUrl, $appId) {
+  var url = $serverUrl + '/api/highlights/';
+  return {
+    fetch: function() {
+      var deferred = $q.defer();
+
+      $http.get(url, {params: {
+        enterprise__pk: $appId,
+        is_active: 1
       }})
         .then(function(response) {
           deferred.resolve(response.data);

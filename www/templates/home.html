@@ -1,92 +1,28 @@
 <ion-view view-title="{{appName}}" style="display: flex">
-  <!-- <ion-content > -->
-  <div style="margin-top:44px; flex:1; display: flex; flex-direction: column">
-    <div style="flex: 5" class="flex">
-      <ion-slides style="flex: 1" options="options" slider="data.slider">
-        <ion-slide-page ng-repeat="data in homeData" class="flex">
-          <div style="flex: 1" class="flex flex-column slider-body">
-            <div class="slider-image">
-              <img ng-src="{{data.image}}">
-            </div>
-            <div class="slider-text">
+  <ion-content>
+    <ion-refresher pulling-text="Arraste para atualizar..." on-refresh="loadData()" spinner="none">
+    </ion-refresher>
+    <ion-slides options="options" slider="data.slider">
+      <ion-slide-page ng-repeat="data in homeData" class="flex">
+        <div style="flex: 1" class="flex flex-column slider-body">
+          <div class="slider-image">
+            <img ng-src="{{data.image}}">
+          </div>
+          <div class="slider-text">
+            <a ng-href="#{{data.link}}">
               <h2 ng-style="ngStyle.h2">{{data.title}}</h2>
               <p ng-style="ngStyle.p">
                 {{data.description}}
               </p>
-            </div>
-          </div>
-        </ion-slide-page>
-      </ion-slides>
-    </div>
-    <div style="flex: 1" class="home-menu wide-as-needed">
-      <!-- <ion-scroll direction="x">
-        <div class="cards">
-          <div class="card-wrapper">
-            <div class="card">
-              <div class="item item-text-wrap flex flex-column justify-center align-center">
-                <i class="icon ion-ios-list"></i>
-                <span>Produtos</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-wrapper">
-            <div class="card">
-              <div class="item item-text-wrap flex flex-column justify-center align-center">
-                <i class="icon ion-ios-list"></i>
-                <span>Produtos</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-wrapper">
-            <div class="card">
-              <div class="item item-text-wrap flex flex-column justify-center align-center">
-                <i class="icon ion-ios-list"></i>
-                <span>Produtos</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-wrapper">
-            <div class="card">
-              <div class="item item-text-wrap flex flex-column justify-center align-center">
-                <i class="icon ion-ios-list"></i>
-                <span>Produtos</span>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
-      </ion-scroll> -->
-      <!-- <div style="flex: 1" class="flex justify-space-around">
-        <div style="flex: 1" class="card flex">
-          <div style="flex: 1" class="item item-text-wrap flex flex-column justify-center align-center">
-            <i class="icon ion-ios-list"></i>
-            <span>Produtos</span>
-          </div>
-        </div>
-        <div style="flex: 1" class="card flex">
-          <div style="flex: 1" class="item item-text-wrap flex flex-column justify-center align-center">
-            <i class="icon ion-wrench"></i>
-            <span>Serviços</span>
-          </div>
-        </div>
-      </div>
-      <div style="flex: 1" class="flex justify-space-around">
-        <div style="flex: 1" class="card flex">
-          <div style="flex: 1" class="item item-text-wrap flex flex-column justify-center align-center">
-            <i class="icon ion-ios-star"></i>
-            <span>Promoções</span>
-          </div>
-        </div>
-        <div style="flex: 1" class="card flex">
-          <div style="flex: 1" class="item item-text-wrap flex flex-column justify-center align-center">
-            <i class="icon ion-android-contact"></i>
-            <span>Contate-nos</span>
-          </div>
-        </div> -->
-      </div>
-    </div>
+      </ion-slide-page>
+    </ion-slides>
+
     <!-- <div class="wrapper">
      <ribbon-corner>Teste</ribbon-corner>
     </div>​ -->
-    <!-- </ion-content> -->
+  </ion-content>
   </div>
 </ion-view>
