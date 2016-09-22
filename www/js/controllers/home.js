@@ -14,13 +14,28 @@ angular.module('starter.controllers')
   //   $scope.homeData = data.homeData;
   //   console.log($scope.homeData);
   // });
+  //
 
   $scope.ngStyle = {
+    content: {
+      'background-color': '#094d9d'
+    },
+    slide: {
+      height: window.screen.height * 0.65 + 'px'
+    },
     h2: {
-      color: 'rgb(35, 136, 200)'
+      color: 'white'
     },
     p: {
-      color: 'rgb(35, 136, 200)'
+      color: 'white'
+    },
+    buttonWrapper: {
+      height: window.screen.height * 0.16 + 'px',
+      overflow: 'hidden'
+    },
+    img: {
+      height: '100%',
+      width: '160%'
     }
   }
   $scope.options = {

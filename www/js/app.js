@@ -11,7 +11,8 @@ angular.module('starter', [
   'starter.controllers',
   'starter.data',
   'starter.directives.ribbon',
-  'starter.directives.viewButton'
+  'starter.directives.viewButton',
+  'tabSlideBox'
 ])
 
 .run(function($rootScope, $ionicPlatform, $getData, $http, $window, $state, $localStorage, $serverUrl) {

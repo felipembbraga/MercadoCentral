@@ -1,6 +1,6 @@
 <ion-view>
 
-  <ion-content>
+  <ion-content ng-style="ngStyle.content">
     <ion-refresher
       pulling-text="Arraste para atualizar..."
       on-refresh="loadData()"
@@ -14,15 +14,14 @@
       </ion-slide-page>
     </ion-slides>
     <div class="padding">
-      <h2>
+      <h2 ng-style="ngStyle.h2">
         {{obj.product.title}}
       </h2>
-      <small>
+      <small ng-style="ngStyle.small">
         {{obj.product.short_description}}
       </small>
-      <p>
-        {{obj.product.description}}
-      </p>
+      <div class="product-content" ng-style="ngStyle.description" ng-bind-html="obj.product.description">
+      </div>
     </div>
 
   </ion-content>

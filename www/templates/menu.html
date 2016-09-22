@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" style="background-color: black">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-dark">
       <ion-nav-back-button class="button-clear">
@@ -19,7 +19,7 @@
         </button>
         <button
           class="button button-icon button-clear ion-android-more-vertical"
-          style="margin-right: 10px"
+          style="margin-right: 10px"black
           ng-click="openPopover($event)">
         </button>
       </ion-nav-buttons>
@@ -31,15 +31,15 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-content ng-controller="MenuCtrl">
+    <ion-content ng-controller="MenuCtrl" class="menu-content">
       <div class="logo-menu">
         <img ng-src="{{logo}}">
       </div>
-      <ion-list>
+      <ion-list class="menu-list">
         <ion-item
           menu-close
           collection-repeat="item in menuItems"
-          class="item-icon-left"
+          class="item-icon-left menu-list-item"
           ng-href="{{item.route}}"
         >
           <i class="icon {{item.icon}}"></i>

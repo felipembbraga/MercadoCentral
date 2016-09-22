@@ -63,6 +63,23 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RegisterCtrl', function($scope, $localStorage, $state, $ionicPopup) {
+  $scope.ngStyle = {
+    content: {
+      'background-color': '#094d9d'
+    },
+    slide: {
+      height: window.screen.height * 0.5 + 'px'
+    },
+    h2: {
+      color: 'white'
+    },
+    p: {
+      color: 'white'
+    },
+    buttonWrapper: {
+      height: window.screen.height * 0.31 + 'px',
+    }
+  };
   $scope.obj = {
     name: '',
     email: '',
@@ -108,7 +125,23 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ContactCtrl', function($scope, $localStorage, $state, $ionicPopup, $ionicHistory) {
-
+  $scope.ngStyle = {
+    content: {
+      'background-color': '#094d9d'
+    },
+    slide: {
+      height: window.screen.height * 0.5 + 'px'
+    },
+    h2: {
+      color: 'white'
+    },
+    p: {
+      color: 'white'
+    },
+    buttonWrapper: {
+      height: window.screen.height * 0.31 + 'px',
+    }
+  };
   $scope.$on('$stateChangeSuccess', function(event, toState) {
     if(toState.name === 'app.contact') {
       $scope.obj = {
@@ -222,6 +255,24 @@ angular.module('starter.controllers', [])
     products: []
   };
 
+  $scope.ngStyle = {
+    content: {
+      'background-color': '#094d9d'
+    },
+    slide: {
+      height: window.screen.height * 0.5 + 'px'
+    },
+    h2: {
+      color: 'white'
+    },
+    p: {
+      color: 'white'
+    },
+    buttonWrapper: {
+      height: window.screen.height * 0.31 + 'px',
+    }
+  };
+
   $scope.$watch(function() {
     return viewButtonService.list;
   }, function(value) {
@@ -303,6 +354,27 @@ angular.module('starter.controllers', [])
     product: {}
   };
 
+  $scope.ngStyle = {
+    content: {
+      'background-color': '#094d9d'
+    },
+    slide: {
+      height: window.screen.height * 0.5 + 'px'
+    },
+    small: {
+      color: 'white'
+    },
+    h2: {
+      color: 'white'
+    },
+    description: {
+      color: 'white'
+    },
+    buttonWrapper: {
+      height: window.screen.height * 0.31 + 'px',
+    }
+  };
+
   $scope.loadData = function() {
     console.log('aberto');
     $ionicLoading.show({
@@ -372,28 +444,4 @@ angular.module('starter.controllers', [])
   //   });
   // });
 
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [{
-    title: 'Reggae',
-    id: 1
-  }, {
-    title: 'Chill',
-    id: 2
-  }, {
-    title: 'Dubstep',
-    id: 3
-  }, {
-    title: 'Indie',
-    id: 4
-  }, {
-    title: 'Rap',
-    id: 5
-  }, {
-    title: 'Cowbell',
-    id: 6
-  }];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {});
+});

@@ -1,24 +1,67 @@
 <ion-view view-title="{{appName}}" style="display: flex">
-  <ion-content>
+  <ion-content ng-style="ngStyle.content">
     <ion-refresher pulling-text="Arraste para atualizar..." on-refresh="loadData()" spinner="none">
     </ion-refresher>
-    <ion-slides options="options" slider="data.slider">
-      <ion-slide-page ng-repeat="data in homeData" class="flex">
-        <div style="flex: 1" class="flex flex-column slider-body">
-          <div class="slider-image">
-            <img ng-src="{{data.image}}">
-          </div>
-          <div class="slider-text">
-            <a ng-href="#{{data.link}}">
-              <h2 ng-style="ngStyle.h2">{{data.title}}</h2>
-              <p ng-style="ngStyle.p">
-                {{data.description}}
-              </p>
-            </a>
-          </div>
-        </div>
-      </ion-slide-page>
-    </ion-slides>
+    <div class="flex flex-column">
+      <div ng-style="ngStyle.buttonWrapper">
+          <!-- <ion-scroll direction="x" class="wide-as-needed">
+            <div class="home-buttons">
+              <div class="button-wrapper" ng-repeat="item in menuItems">
+                <a class="button icon {{item.icon}}" href=""></a>
+              </div>
+            </div>
+          </ion-scroll> -->
+          <tab-slide-box>
+              <div class="tsb-icons">
+                  <div class="tsb-ic-wrp">
+                    <ion-scroll direction="x" class="tsb-hscroll">
+                      <a
+                        ng-href="{{item.route}}"
+                        class="{{item.icon}}"
+                        ng-repeat="item in menuItems"
+                        ng-if="item.name!=='Início'"></a>
+                    </ion-scroll>
+                  </div>
+              </div>
+              <!-- <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+                  <ion-slide ng-repeat="item in menuItems">
+                      <h3>{{item.name}}</h3>
+                  </ion-slide> -->
+                  <!-- <ion-slide>
+                      <h3>Games content</h3>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Mail content</h3>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Car content</h3>
+                  </ion-slide>
+                  <ion-slide>
+                      <h3>Profile content</h3>
+                  </ion-slide> -->
+              <!-- </ion-slide-box> -->
+          </tab-slide-box>
+      </div>
+      <div ng-style="ngStyle.slide">
+        <ion-slides options="options" slider="data.slider" >
+          <ion-slide-page ng-repeat="data in homeData">
+            <div class="flex flex-column slider-body" ng-style="ngStyle.slide">
+              <div class="slider-image" ng-style="ngStyle.slide">
+                <img ng-src="{{data.image}}" ng-style="ngStyle.img">
+              </div>
+              <div class="slider-text">
+                <a ng-href="#{{data.link}}">
+                  <h2 ng-style="ngStyle.h2">{{data.title}}</h2>
+                  <p ng-style="ngStyle.p">
+                    {{data.description}}
+                  </p>
+                </a>
+              </div>
+            </div>
+          </ion-slide-page>
+        </ion-slides>
+      </div>
+    </div>
 
     <!-- <div class="wrapper">
      <ribbon-corner>Teste</ribbon-corner>
