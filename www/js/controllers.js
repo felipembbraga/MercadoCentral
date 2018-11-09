@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('SplashScreenCtrl', function($rootScope, $scope, $getData, $state, $timeout) {
   $scope.ngStyle = {
-    'background-color': '#444',
+    'background-color': $rootScope.primaryColor || '#444',
     'display': 'flex',
     'flex-direction': 'column',
     'justify-content': 'center',
@@ -14,6 +14,10 @@ angular.module('starter.controllers', [])
       $getData.load().then(function(data) {
           $rootScope.appName = data.name;
           $rootScope.logo = data.logo;
+          $rootScope.primaryColor = data.primary_color;
+          $rootScope.secondaryColor = data.secondary_color;
+          $scope.ngStyle['background-color'] = data.primary_color;
+          console.log(data);
           var sections = _.map(data.sections, function(value) {
             var route = '#/app';
             console.log(value.fields.type)
@@ -40,7 +44,6 @@ angular.module('starter.controllers', [])
             ref: '',
             route: '#/app/home'
           }], sections);
-          console.log(data);
           $timeout(function() {$state.transitionTo('app.home');}, 1000);
 
       });
@@ -302,7 +305,7 @@ angular.module('starter.controllers', [])
         $scope.obj.products = _.map(data, function(product) {
           var thumbnailImage = angular.fromJson(product.thumbnail);
 
-          if (thumbnailImage) {
+          if (thumbnailImage && thumbnailImage.length > 0) {
             var thumbnail = $serverUrl + '/media/' + thumbnailImage[0].fields.image
           }
 

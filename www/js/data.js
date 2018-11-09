@@ -1,5 +1,5 @@
 angular.module('starter.data', [])
-.constant('$serverUrl', 'http://ubuntuserver1385.cloudapp.net')
+.constant('$serverUrl', 'http://192.168.2.107')
 .constant('$appId', 1)
 
 .factory('$getData', function($http, $q, $rootScope, $localStorage, $serverUrl, $appId) {

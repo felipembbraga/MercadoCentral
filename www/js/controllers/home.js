@@ -18,7 +18,7 @@ angular.module('starter.controllers')
 
   $scope.ngStyle = {
     content: {
-      'background-color': '#094d9d'
+      'background-color': 'white'
     },
     slide: {
       height: window.screen.height * 0.65 + 'px'

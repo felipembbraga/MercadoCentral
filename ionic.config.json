@@ -1,4 +1,14 @@
 {
   "name": "MercadoCentral",
-  "app_id": "2a8e612a"
+  "app_id": "2a8e612a",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
 }

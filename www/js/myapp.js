@@ -136,9 +136,11 @@ angular.module('starter', [
 
     $rootScope.$window = $window;
     $getData.fetch().then(function(data) {
+      console.log(data);
       $rootScope.appName = data.appName;
       $rootScope.menuItems = data.menuItems;
       $rootScope.logo = data.logo;
+      $rootScope.primaryColor = data.primaryColor
     });
   });
 });
